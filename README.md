@@ -1,6 +1,6 @@
 # PHP Octopus
 
-> PHP Octopus is a only file with destiny of scanner a shared server, searching by sensibles files
+> PHP Octopus is a only file with destiny of scanner a shared server, searching by sensible files from other users as files of database settings,  system settings and folders with write permissions.
 
 ### Download
 
