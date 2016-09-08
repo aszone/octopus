@@ -4,7 +4,7 @@
 
 ### Download
 
-[PHP Ocotpus](https://github.com/lenonleite/octopus/archive/master.zip)
+[PHP Ocotpus](https://github.com/lenonleite/octopus/archive/master.zip) or git clone https://github.com/lenonleite/octopus.git
 
 ### Using - Youtube Link
 
