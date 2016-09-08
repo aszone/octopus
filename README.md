@@ -1,6 +1,6 @@
 # PHP Octopus
 
-> PHP Octopus is a only file with destiny of scan um shared server finding by sensibles files
+> PHP Octopus is a only file with destiny of scanner a shared server, searching by sensibles files
 
 ### Install
 
@@ -9,6 +9,16 @@
 ### Using
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+
+### Using
+
+![alt tag](http://lenonleite.com.br/wp-content/uploads/2016/09/server8-e1473307784440-1.png)
+
+
+=============================
+
+![alt tag](http://lenonleite.com.br/wp-content/uploads/2016/09/server11-e1473308756190-1.png)
+
 
 #### Search Files
 
