@@ -2,9 +2,9 @@
 
 > PHP Octopus is a only file with destiny of scanner a shared server, searching by sensibles files
 
-### Install
+### Download
 
-[Download PHP Ocotpus](https://github.com/lenonleite/octopus/archive/master.zip)
+[PHP Ocotpus](https://github.com/lenonleite/octopus/archive/master.zip)
 
 ### Using
 
