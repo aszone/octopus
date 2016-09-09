@@ -297,6 +297,13 @@ if(@file('/etc/passwd')){
                             $folderDefaults[] = "site/";
                             $folderDefaults[] = "admin/";
                             $folderDefaults[] = "adm/";
+                            $folderDefaults[] = "admin/includes/";
+                            $folderDefaults[] = "admin/include/";
+                            $folderDefaults[] = "admin/config/";
+                            $folderDefaults[] = "admin/configs/";
+                            $folderDefaults[] = "admin/common/";
+                            $folderDefaults[] = "admin/classes/";
+                            $folderDefaults[] = "admin/class/";
                             foreach ($folderDefaults as $keyFolder => $folderDefault) {
                                 if ($keyFolder != 0) {
                                     $url[] = '/' . $home . '/' . $userfinal[0] . '/' . $public_folder . '/' . $folderDefault . 'configuration.php';
@@ -460,7 +467,7 @@ if(@file('/etc/passwd')){
                         </td>
                         <td>
                             <?php
-                            $pathcodeigniter = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/application/config/database.php';
+                            $pathcodeigniter = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/../application/config/database.php';
                             if (file_exists($pathcodeigniter)) {
                                 $count['pathCodeigniter']++;
                                 ?>
@@ -475,7 +482,7 @@ if(@file('/etc/passwd')){
                         </td>
                         <td>
                             <?php
-                            $pathsymfony = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/app/config/parameters.yml';
+                            $pathsymfony = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/../app/config/parameters.yml';
                             if (file_exists($pathsymfony)) {
                                 $count['pathSymfony']++;
                                 ?>
@@ -490,7 +497,7 @@ if(@file('/etc/passwd')){
                         </td>
                         <td>
                             <?php
-                            $pathzend = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/application/config/application.ini';
+                            $pathzend = '/' . $home . '/' . $userfinal[0] . '/'.$public_folder.'/../application/configs/application.ini';
                             if (file_exists($pathzend)) {
                                 $count['pathZend']++;
                                 ?>
