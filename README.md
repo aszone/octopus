@@ -1,4 +1,5 @@
 # PHP Octopus
+[![StyleCI](https://styleci.io/repos/71394325/shield?branch=master)](https://styleci.io/repos/71394325)
 
 > PHP Octopus is a only file with destiny of scanner a shared server, searching by sensible files from other users as files of database settings,  system settings and folders with write permissions.
 
@@ -41,6 +42,3 @@ or
 * file of config system Zend Framework
 * file .htaccess
 * file php.ini
-
-
-
