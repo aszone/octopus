@@ -275,8 +275,8 @@ if (@file('/etc/passwd')) {
                             <?php
                             unset($url);
 
-                    $url = array();
-                    $folderDefaults = array();
+                    $url = [];
+                    $folderDefaults = [];
                     $folderDefaults[] = '';
                     $folderDefaults[] = 'includes/';
                     $folderDefaults[] = 'include/';
